@@ -32,23 +32,23 @@ definitions:
 	function getInfoArticolo($artName in ArticoloLibreria, $artID in ArticoloID) =
 	 switch($artName, $artID)
 	 	case (LIBRO, 1):
-	 		"LIBRO: I Malavoglia"
+	 		"LIBRO - I Malavoglia"
 	 	case (LIBRO, 2):
-	 		"LIBRO: Anna Karenina"
+	 		"LIBRO - Anna Karenina"
 	 	case (LIBRO, 3):
-	 		"LIBRO Fosca"
+	 		"LIBRO - Fosca"
 	 	case(AUDIO,1):
-	 		"AUDIO: The best of Vivaldi"
+	 		"AUDIO - The best of Vivaldi"
 	 	case(AUDIO,2):
-	 		"AUDIO: West End Blues"
+	 		"AUDIO - West End Blues"
 	 	case(AUDIO,3):
-	 		"AUDIO: Beethoven Piano Concert"
+	 		"AUDIO - Beethoven Piano Concert"
 	 	case(RIVISTA,1):
-	 		"RIVISTA: Wired"
+	 		"RIVISTA - Wired"
 	 	case(RIVISTA,2):
-	 		"RIVISTA: Focus"
+	 		"RIVISTA - Focus"
 	 	case(RIVISTA,3):
-	 		"RIVISTA: Times"
+	 		"RIVISTA - Times"
 	 endswitch	
 	
 	rule r_noleggia($artName in ArticoloLibreria, $artID in ArticoloID) =
@@ -59,7 +59,10 @@ definitions:
 			infoArticolo := getInfoArticolo($artName, $artID)
 			endpar
 		else
+			par
 			messUtente := "Errore. L'articolo non e' disponibile per il noleggio."
+			infoArticolo := getInfoArticolo($artName, $artID)
+			endpar
 		endif
 		
 	rule r_restituisci($artName in ArticoloLibreria, $artID in ArticoloID) =
@@ -70,7 +73,10 @@ definitions:
 			infoArticolo := getInfoArticolo($artName, $artID)
 			endpar
 		else
+			par
 			messUtente := "Errore. L'articolo e' gia' stato restituito."
+			infoArticolo := getInfoArticolo($artName, $artID)
+			endpar
 		endif
 
 	main rule r_Main =

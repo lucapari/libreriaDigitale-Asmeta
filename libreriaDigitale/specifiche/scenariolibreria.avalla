@@ -1,0 +1,90 @@
+scenario scenarioavalla
+load libreria.asm
+
+//all'inizio verifico che tutti gli articoli siano disponibili
+check disponibile(LIBRO,1) = true;
+check disponibile(LIBRO,2) = true;
+check disponibile(LIBRO,3) = true;
+check disponibile(AUDIO,1) = true;
+check disponibile(AUDIO,2) = true;
+check disponibile(AUDIO,3) = true;
+check disponibile(RIVISTA,1) = true;
+check disponibile(RIVISTA,2) = true;
+check disponibile(RIVISTA,3) = true;
+
+//testo il noleggio di ogni tipo di articolo
+//noleggio di un LIBRO
+set sceltaAzione := NOLEGGIARE;
+set sceltaArticolo := LIBRO;
+set sceltaID := 1;
+step
+//controllo che il libro noleggiato non sia più disponibile
+check disponibile(LIBRO,1) = false;
+check infoArticolo = "LIBRO - I Malavoglia";
+check messUtente = "Articolo noleggiato correttamente.";
+
+//noleggio di un AUDIO
+check disponibile(AUDIO,2) = true;	//controllo la disponibilità prima del noleggio
+set sceltaAzione := NOLEGGIARE;
+set sceltaArticolo := AUDIO;
+set sceltaID := 2;
+step
+//controllo che il libro e l'audio noleggiati non siano più disponibili
+check disponibile(LIBRO,1) = false;
+check disponibile(AUDIO,2) = false;
+check infoArticolo = "AUDIO - West End Blues";
+check messUtente = "Articolo noleggiato correttamente.";
+
+//noleggio di una RIVISTA
+check disponibile(RIVISTA,3) = true;  //controllo la disponibilità prima del noleggio
+set sceltaAzione := NOLEGGIARE;
+set sceltaArticolo := RIVISTA;
+set sceltaID := 3;
+step
+//controllo che il libro, l'audio e la rivista noleggiati non siano più disponibili
+check disponibile(LIBRO,1) = false;
+check disponibile(AUDIO,2) = false;
+check disponibile(RIVISTA,3) = false;
+check infoArticolo = "RIVISTA - Times";
+check messUtente = "Articolo noleggiato correttamente.";
+set sceltaAzione := NOLEGGIARE;
+set sceltaArticolo := LIBRO;
+set sceltaID := 1;
+step
+
+//provo a noleggiare un articolo non disponibile
+check disponibile(LIBRO,1) = false;	//controllo che il libro non sia effettivamente disponibile
+check infoArticolo = "LIBRO - I Malavoglia";
+check messUtente = "Errore. L'articolo non e' disponibile per il noleggio.";
+set sceltaAzione := RESTITUIRE;
+set sceltaArticolo := LIBRO;
+set sceltaID := 1;
+step
+
+//restituisco tutti gli articoli noleggiati
+//restituisco il libro
+check disponibile(LIBRO,1) = true;	//controllo che il libro sia tornato disponbile
+check infoArticolo = "LIBRO - I Malavoglia";
+check messUtente = "Articolo restituito correttamente.";
+set sceltaAzione := RESTITUIRE;
+set sceltaArticolo := AUDIO;
+set sceltaID := 2;
+step
+
+//restituisco l'audio
+check infoArticolo = "AUDIO - West End Blues";
+check messUtente = "Articolo restituito correttamente.";
+check disponibile(LIBRO,1) = true;
+check disponibile(AUDIO,2) = true; //controllo che l'audio sia tornato disponbile
+set sceltaAzione := RESTITUIRE;
+set sceltaArticolo := RIVISTA;
+set sceltaID := 3;
+step
+
+//restituisco la rivista
+check infoArticolo = "RIVISTA - Times";
+check messUtente = "Articolo restituito correttamente.";
+check disponibile(LIBRO,1) = true;
+check disponibile(AUDIO,2) = true;
+check disponibile(RIVISTA,3) = true; //controllo che la rivista sia tornata disponibile
+step

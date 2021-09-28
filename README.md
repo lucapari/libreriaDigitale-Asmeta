@@ -3,7 +3,7 @@ Progetto realizzato per il corso *Informatica III - modulo programmazione* (Univ
 
 ## Struttura
 La repository *libreriaDigitale-Asmeta* è così strutturata:
-- `UML_diagrams`, contiene un file *.asta* e delle immagini *.png* con i class diagrams di tutte le classi del progetto
+- `FlowChart`, contiene un file *.asta* e delle immagini *.png* con i class diagrams di tutte le classi del progetto
 - `documentazione`, contiene un file *.pdf* con la documentazione del progetto
 - `libreriaDigitale`, contiene il codice della libreria digitale e un file *main.cpp* che chiama l'interfaccia a linea di comando del programma (CLI)
 

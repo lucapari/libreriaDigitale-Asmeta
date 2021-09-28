@@ -8,5 +8,5 @@ La repository *libreriaDigitale-Asmeta* è così strutturata:
 - `libreriaDigitale`, contiene la specifica asm, la standard library ASM e uno scenario Avalla della libreria digitale
 
 ## AsmetaA
-Di seguito viene riportata una immagine che introduce all'esecuzione del programma mediante AsmetaA.<br/><br/>
+Di seguito viene riportata un'immagine che introduce all'esecuzione del programma mediante AsmetaA.<br/><br/>
 ![asmetaA](https://user-images.githubusercontent.com/36960844/135135040-66af9883-12fd-4c8d-8f5d-a3f62a3ce6d4.png)
